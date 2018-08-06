@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () =>{
-    templateInit();
+    //templateInit();
+    templateInit2();
     registClickEvent($('.tab-btn-box'), changeBestBanchan);
 }, false);
 
@@ -23,6 +24,39 @@ const templateInit = async () =>{
      $('.tab-content-group-box').children[randomIdx].classList.add('on');
 
 }
+
+
+const templateInit2 = async () =>{
+    const randomIdx = Math.floor(Math.random()*6);
+
+    await initBestCategory2();
+    await loadBestBanchan(randomIdx);
+
+    $('.tab-btn-box').children[randomIdx].classList.add('on');
+    $('.tab-content-group-box').children[randomIdx].classList.add('on');
+
+}
+
+const initBestCategory2 = ( ) =>{
+   return fetchManager2({
+       url:  '/api/banchan/best/' ,
+       method: 'GET',
+       headers: { 'content-type': 'application/json'},
+       callback: categoryInit,
+   });
+};
+
+const loadBestBanchan2 =  (index) => {
+    return fetchManager2({
+        url:  '/api/banchan/best/' + index + 1,
+        method: 'GET',
+        headers: { 'content-type': 'application/json'},
+        callback: (data) =>  {
+            banchanInit(bestBanchanData, index);
+            $('.tab-btn-box').children[index].setAttribute("data-load", "loaded");
+         },
+    });
+};
 
 const getBestBanchanData = (index) => {
     index = index || "";

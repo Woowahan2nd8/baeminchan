@@ -2,7 +2,7 @@ const $ = (selector) => {
     return document.querySelector(selector);
 }
 
-const $All = (selector) => {
+const $All = (selector) => {``
     return document.querySelectorAll(selector);
 }
 
@@ -14,7 +14,14 @@ const fetchManager = ({ url, method, body, headers, callback }) => {
         callback(result)
     })
 }
-
+const fetchManager2 = ({ url, method, body, headers, callback }) => {
+    return fetch(url, {method,body,headers,credentials: "same-origin"})
+        .then((response) => {
+        return response.json()
+        }).then((result) => {
+        callback(result)
+    })
+}
 
 const fetchAsync = ({ url, method, body, headers} ) => (
  fetch(url, {method,body,headers,credentials: "same-origin"}).then(res => res.json())
