@@ -2,6 +2,7 @@ package codesquad.web;
 
 import codesquad.domain.Product;
 import codesquad.repository.ProductRepository;
+import codesquad.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,10 @@ import java.util.List;
 public class ApiProductController {
 
     @Autowired
-    ProductRepository productRepository;
+    ProductService productService;
 
     @GetMapping("/{menuId}")
     public List<Product> showProducts(@PathVariable long menuId){
-        return productRepository.findAllByEventMenuId(menuId);
+        return productService.showProducts(menuId);
     }
 }

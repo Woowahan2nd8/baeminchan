@@ -22,7 +22,6 @@ public class MenuService {
         return menuRepository.findById(id).orElseThrow(() -> new NotExistException("없는 메뉴 입니다."));
     }
 
-
     @Transactional
     public void deleteMenu(long menuId){
         Menu deleteTarget = getSpecificMenu(menuId);
