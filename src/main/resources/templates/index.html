@@ -135,24 +135,11 @@
 
             <div class="tab-box">
                 <ul class="tab-btn-box">
+                    {{#bestMenu.children}}
                     <li>
-                        <a data-category-id="17011200" href="#">할인특가 세트상품</a>
+                        <a data-category-id="{{id}}" href="#">{{name}}</a>
                     </li>
-                    <li>
-                        <a data-category-id="17011000" href="#">풍성한 고기반찬</a>
-                    </li>
-                    <li>
-                        <a data-category-id="17011100" href="#">바다향가득 반찬</a>
-                    </li>
-                    <li>
-                        <a data-category-id="17010200" href="#">편리한 반찬세트</a>
-                    </li>
-                    <li>
-                        <a data-category-id="17010300" href="#">간편한 덮밥요리</a>
-                    </li>
-                    <li>
-                        <a data-category-id="17011400" href="#">우리아이영양반찬</a>
-                    </li>
+                    {{/bestMenu.children}}
                 </ul>
 
                 <ul class="tab-content-group-box">
