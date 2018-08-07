@@ -26,8 +26,8 @@ public class EhCacheTest {
     @Autowired
     private ProductService productService;
 
-
     private static final Long FIRST_BEST_MENU_ID = 47L;
+
     @Test
     public void showWithCache() {
         Cache cacheAboutProducts = this.cacheManager.getCache("products");
