@@ -1,7 +1,8 @@
-package codesquad.service;
+package codesquad.environment;
 
 import codesquad.domain.MenuContext;
 import codesquad.domain.Product;
+import codesquad.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductServiceTest {
+public class EhCacheTest {
 
     @Autowired
     private CacheManager cacheManager;
@@ -28,7 +29,7 @@ public class ProductServiceTest {
 
     private static final Long FIRST_BEST_MENU_ID = 47L;
     @Test
-    public void show() {
+    public void showWithCache() {
         Cache cacheAboutProducts = this.cacheManager.getCache("products");
         assertThat(cacheAboutProducts).isNotNull();
 
@@ -38,8 +39,6 @@ public class ProductServiceTest {
         List<Product> productsFromService = productService.showProducts(FIRST_BEST_MENU_ID);
         List<Product> productsFromCache = (List<Product>) cacheAboutProducts.get(FIRST_BEST_MENU_ID).get();
         assertThat(productsFromCache).isEqualTo(productsFromService);
-
-
 
     }
 }
